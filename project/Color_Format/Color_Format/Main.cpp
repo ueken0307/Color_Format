@@ -218,7 +218,7 @@ void gui_process(GUI &gui,int &R,int &G,int &B) {
 	std::string output(out);
 	gui.textArea(L"output").setText(Widen(output));
 
-	if (i == 3 && gui.checkBox(L"auto").checked(0)) {
+	if (Window::Focused() == true && i == 3 && gui.checkBox(L"auto").checked(0)) {
 		//自動コピー
 		gui.button(L"copy").enabled = false;
 		Clipboard::SetText(Widen(output));
