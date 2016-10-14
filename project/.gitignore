@@ -5,7 +5,6 @@ ipch
 Engine
 
 *.sdf
-*.ico
 *.html
 *.suo
 *.exe
