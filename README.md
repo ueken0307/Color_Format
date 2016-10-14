@@ -6,7 +6,7 @@ Color_Format
 ![](https://github.com/ueken0307/Color_Format/blob/master/etc/how_to_use.gif)
 
 ##似たようなwebサービスがいっぱいあるのになんで作ったの？
-確かにBGRをスライダーなどで決定して色をプレビューしてくれるサービスはいっぱいあります。  
+確かにRGBをスライダーなどで決定して色をプレビューしてくれるサービスはいっぱいあります。  
 しかし、それをプログラムなどに組み込むときには、それをもとに手入力したり、RGBを1つ1つコピーして貼り付けたりする必要が出てきます。  
 これは時間の無駄と思いこのアプリケーションを作成しました。~~作者が楽したかっただけです~~  
 
@@ -42,6 +42,10 @@ IDE VisualStudio2015
 確認済　Windows 8.1 /Windows 10  
 
 ##その他
+BGRはほぼopencv用です(?)  
+  
+[アイコン用にお借りした画像](http://www.ac-illust.com/main/detail.php?id=555473&word=%25E8%2589%25B2%25E7%259B%25B8%25E7%2592%25B0RGB)  
+  
 製作者 [@zuho_cpp](https://twitter.com/zuho_cpp)  
 
 ~~かっこいいアプリ名考えようと思ったんですけど、英語の知識がnainaiすぎてクソみたいな名前になったのは触れちゃだめです。~~  
