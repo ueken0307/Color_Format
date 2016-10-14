@@ -2,6 +2,7 @@ Debug
 Release
 obj
 ipch
+Engine
 
 *.sdf
 *.ico
