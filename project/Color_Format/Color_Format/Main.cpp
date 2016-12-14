@@ -2,9 +2,7 @@
 #include<Siv3D.hpp>
 #include<cstring>
 
-
-
-void gui_process(GUI&,int&,int&,int&);
+void gui_process(GUI&, int&, int&, int&);
 
 void Main()
 {
@@ -19,20 +17,17 @@ void Main()
 
 	gui.addln(L"color", GUIColorPalette::Create(Color(R, G, B)));
 
-	gui.add(GUIText::Create(L"   R"));
-	gui.add(L"R", GUISlider::Create(0, 255, 0));
-	gui.addln(L"tfr", GUITextField::Create(3));
-	gui.textField(L"tfr").setText(L"0");
+	for (int i = 0; i < 3; ++i) {
+		String name;
+		if (i == 0)name = L"R";
+		if (i == 1)name = L"G";
+		if (i == 2)name = L"B";
 
-	gui.add(GUIText::Create(L"   G"));
-	gui.add(L"G", GUISlider::Create(0, 255, 0));
-	gui.addln(L"tfg", GUITextField::Create(3));
-	gui.textField(L"tfg").setText(L"0");
-
-	gui.add(GUIText::Create(L"   B"));
-	gui.add(L"B", GUISlider::Create(0, 255, 0));
-	gui.addln(L"tfb", GUITextField::Create(3));
-	gui.textField(L"tfb").setText(L"0");
+		gui.add(GUIText::Create(L"   " + name));
+		gui.add(name, GUISlider::Create(0, 255, 0));
+		gui.addln(name, GUITextField::Create(3));
+		gui.textField(name).setText(L"0");
+	}
 
 	gui.add(L"line", GUIHorizontalLine::Create(1));
 
@@ -46,99 +41,46 @@ void Main()
 
 	while (System::Update())
 	{
-		gui_process(gui,R,G,B);
+		gui_process(gui, R, G, B);
 		Graphics::SetBackground(Color(R, G, B));
 	}
 }
 
-void gui_process(GUI &gui,int &R,int &G,int &B) {
-	//■■■■■■■■■■■■■■■■■■■■R■■■■■■■■■■■■■■■■■■■■■■■
-	if (gui.slider(L"R").hasChanged) {
-		gui.textField(L"tfr").setText(ToString(gui.slider(L"R").valueInt));
-	}
+void gui_process(GUI &gui, int &R, int &G, int &B) {
 
-	if (gui.textField(L"tfr").hasChanged) {
-		String tmp = gui.textField(L"tfr").text;
-		if ((tmp.isEmpty) == false) {
-			int num = Parse<int>(tmp);
-			if (num < 0) {
-				num = 0;
-			}
-			else if (num > 255) {
-				num = 255;
-			}
-			gui.slider(L"R").setValue(num);
-			gui.textField(L"tfr").setText(ToString(num));
-		}
-		else {
+	for (int i = 0; i < 3; ++i) {
+		String name;
+		if (i == 0)name = L"R";
+		if (i == 1)name = L"G";
+		if (i == 2)name = L"B";
 
+		if (gui.slider(name).hasChanged) {
+			gui.textField(name).setText(ToString(gui.slider(name).valueInt));
 		}
-	}
-	if (gui.textField(L"tfr").active == false) {
-		String tmp = gui.textField(L"tfr").text;
-		if ((tmp.isEmpty) == true) {
-			gui.slider(L"R").setValue(0);
-			gui.textField(L"tfr").setText(ToString(0));
-		}
-	}
-	//■■■■■■■■■■■■■■■■■■■■G■■■■■■■■■■■■■■■■■■■■■■■
-	if (gui.slider(L"G").hasChanged) {
-		gui.textField(L"tfg").setText(ToString(gui.slider(L"G").valueInt));
-	}
-	if (gui.textField(L"tfg").hasChanged) {
-		String tmp = gui.textField(L"tfg").text;
-		if ((tmp.isEmpty) == false) {
-			int num = Parse<int>(tmp);
-			if (num < 0) {
-				num = 0;
-			}
-			else if (num > 255) {
-				num = 255;
-			}
-			gui.slider(L"G").setValue(num);
-			gui.textField(L"tfg").setText(ToString(num));
-		}
-		else {
 
-		}
-	}
-	if (gui.textField(L"tfg").active == false) {
-		String tmp = gui.textField(L"tfg").text;
-		if ((tmp.isEmpty) == true) {
-			gui.slider(L"G").setValue(0);
-			gui.textField(L"tfg").setText(ToString(0));
-		}
-	}
-
-	//■■■■■■■■■■■■■■■■■■■■B■■■■■■■■■■■■■■■■■■■■■■■
-	if (gui.slider(L"B").hasChanged) {
-		gui.textField(L"tfb").setText(ToString(gui.slider(L"B").valueInt));
-	}
-	if (gui.textField(L"tfb").hasChanged) {
-		String tmp = gui.textField(L"tfb").text;
-		if ((tmp.isEmpty) == false) {
-			int num = Parse<int>(tmp);
-			if (num < 0) {
-				num = 0;
+		if (gui.textField(name).hasChanged) {
+			String tmp = gui.textField(name).text;
+			if ((tmp.isEmpty) == false) {
+				int num = Parse<int>(tmp);
+				if (num < 0) {
+					num = 0;
+				}
+				else if (num > 255) {
+					num = 255;
+				}
+				gui.slider(name).setValue(num);
+				gui.textField(name).setText(ToString(num));
 			}
-			else if (num > 255) {
-				num = 255;
+		}
+		if (gui.textField(name).active == false) {
+			String tmp = gui.textField(name).text;
+			if ((tmp.isEmpty) == true) {
+				gui.slider(name).setValue(0);
+				gui.textField(name).setText(ToString(0));
 			}
-			gui.slider(L"B").setValue(num);
-			gui.textField(L"tfb").setText(ToString(num));
 		}
-		else {
 
-		}
 	}
-	if (gui.textField(L"tfb").active == false) {
-		String tmp = gui.textField(L"tfb").text;
-		if ((tmp.isEmpty) == true) {
-			gui.slider(L"B").setValue(0);
-			gui.textField(L"tfb").setText(ToString(0));
-		}
-	}
-	//■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
 
 	if (gui.colorPalette(L"color").pressed) {
 		Color tmp = gui.colorPalette(L"color").color;
@@ -146,9 +88,9 @@ void gui_process(GUI &gui,int &R,int &G,int &B) {
 		gui.slider(L"G").setValue(tmp.g);
 		gui.slider(L"B").setValue(tmp.b);
 
-		gui.textField(L"tfr").setText(ToString(tmp.r));
-		gui.textField(L"tfg").setText(ToString(tmp.g));
-		gui.textField(L"tfb").setText(ToString(tmp.b));
+		gui.textField(L"R").setText(ToString(tmp.r));
+		gui.textField(L"G").setText(ToString(tmp.g));
+		gui.textField(L"B").setText(ToString(tmp.b));
 	}
 
 	R = gui.slider(L"R").valueInt;
