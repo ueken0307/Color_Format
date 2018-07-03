@@ -11,7 +11,7 @@ Color_Format
 これは時間の無駄と思いこのアプリケーションを作成しました。~~作者が楽したかっただけです~~  
 
 ## 使い方
-appフォルダ内のColor_Format.exeを実行（単体で動きます）  
+[Releaseページ](https://github.com/ueken0307/Color_Format/releases/)からColor_Format.exeをダウンロード  
 ↓  
 カラーパレットやスライダーを用いたり、数値を直接入力したりして色を決める  
 ↓  
